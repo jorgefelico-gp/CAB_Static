@@ -1,0 +1,614 @@
+
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="icon" href="img/schema/cab-favicon.png" type="image/ico" sizes="16x16">
+	<title>Join Our Customer Advisory Board</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+	<script type="module" src="https://unpkg.com/@heartlandone/vega/dist/vega/vega.esm.js"></script>
+
+	<!-- CUSTOM -->
+	<link rel="stylesheet" href="https://unpkg.com/@heartlandone/vega/dist/vega/vega.css">
+	<!-- <script
+    type="module"
+    src="/vendor/@heartlandone-v2/vega/dist/vega/vega.esm.js"
+  ></script> -->
+  <!-- CUSTOM -->
+  
+	
+	<link rel="stylesheet" href="./style.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.10/vue.min.js"></script>
+</head>
+
+<body>
+	<vega-box background-color="bg-page">
+		<div id="page-preloader">
+			<img src="./assets//preloader.svg" alt="Loading...">
+		</div>
+		<div id="page-content" style="display: none;">
+			
+
+<vega-box background-color="bg-primary" class="header v-py-size-24 v-px-size-64 v-mb-size-32">
+	<vega-flex direction="row" justify-content="space-between" align-items="center">
+		<vega-box>
+			<img class="logo" src="./assets//logo.svg" alt="">
+		</vega-box>
+		<vega-box>
+			<vega-dropdown id="lightingOptions" trigger="hover">
+	<vega-icon icon="fa-regular fa-sun fa-fw" size="size-16" color="text-primary"></vega-icon>
+</vega-dropdown>
+<script type="module">
+	(function () {
+		var lightingComponent = {
+			status: 'light',
+			source: [
+				{ label: 'Light', key: 'light', prefixIcon: 'fa-regular fa-lightbulb fa-fw' },
+				{ label: 'Dark', key: 'dark', prefixIcon: 'fa-regular fa-moon fa-fw' }
+			],
+
+			storeLocallyPermanently: function (param, data) {
+				if (typeof (Storage) !== "undefined") {
+					localStorage[param] = JSON.stringify(data);
+				} else {
+					console.log('Issue with web storage!');
+				}
+			},
+			getCachedData: function (key) {
+				var self = this;
+				var data = localStorage.getItem(key);
+				if (!data) return {};
+				data = JSON.parse(data);
+				return data;
+			},
+			setDefaultLighting: function () {
+				const settings = this.getCachedData('LIGHTING_SETTINGS');
+				this.status = settings.status || this.status;
+				this.setLighting();
+			},
+			setLighting: function () {
+				var self = this;
+				const status = this.status === 'dark' ? true:false;
+				if(typeof window.VegaThemeManager !== 'undefined'){
+					window.VegaThemeManager.toggleDarkMode(status);
+					const isDarkMode = window.VegaThemeManager.isDarkMode();
+					self.upldateLogo(isDarkMode);
+				}				
+			},
+			upldateLogo: function(isDarkMode){
+				const logo = document.querySelector('img.logo');
+				const darkLogoSrc = "./assets//logo-white.svg";
+				const lightLogoSrc = "./assets//logo.svg";
+				if(isDarkMode){
+					$(logo).attr('src', darkLogoSrc);
+				}else{
+					$(logo).attr('src', lightLogoSrc);
+				}
+			},
+			initDropdown: function(){
+				var self = this;
+				const lightingOptions = document.getElementById('lightingOptions');
+				lightingOptions.source = this.source;
+				lightingOptions.addEventListener("vegaDropdownClick", (evt) => {
+					self.status = evt.detail;
+					self.storeLocallyPermanently('LIGHTING_SETTINGS', {status: self.status});
+					self.setLighting();
+				});
+			},
+			init: function () {
+				this.setDefaultLighting();
+				this.initDropdown();
+			}
+		};
+		lightingComponent.init();
+	})();
+</script>
+		</vega-box>
+	</vega-flex>
+</vega-box>
+<div class="container">
+	<vega-box class="v-mb-size-32">
+		<vega-grid column="2" row="1" gap="size-48" class="hero"
+			data-responsive-json="{&quot;S&quot;:1, &quot;M&quot;: 1, &quot;L&quot;:2}" data-responsive-prop="column">
+			<vega-flex direction="col" order="2" justify-content="center">
+				<vega-box class="v-mb-size-8">
+					<vega-flex direction="col">
+						<div class="badge-holder">
+							<vega-box background-color="bg-accent1-primary">
+								<div class="custom-chip">
+									<vega-font color="text-primary" variant="font-field-label-sm-em"><span class="fw-700">Help Shape the Future!</span></vega-font>
+								</div>
+							</vega-box>
+						</div>
+					</vega-flex>
+				</vega-box>
+				<vega-box class="v-mb-size-32">
+					<vega-font variant="font-h1" color="text-primary" class="hero-title">Join Our Customer Advisory
+						Board</vega-font>
+				</vega-box>
+
+				<vega-box class="v-mb-size-32">
+					<vega-box class="v-mb-size-8">
+						<vega-font color="text-primary" variant="font-h5">Are you a user of Heartland products? Do you
+							have
+							valuable insights to share about your experience?</vega-font>
+					</vega-box>
+					<vega-font color="text-primary" variant="font-p2-short">We're seeking engaged customers to join our
+						exclusive <br class="md-block" /> "Customer Advisory
+						Board" (CAB).</vega-font>
+				</vega-box>
+				<vega-box>
+					<vega-button data-target="join-form-modal" variant="primary" icon="fa-solid fa-chevron-right"
+						icon-align="right" size="large"
+						data-responsive-json="{&quot;S&quot;:&quot;default&quot;, &quot;M&quot;: &quot;default&quot;, &quot;L&quot;:&quot;large&quot;}"
+						data-responsive-prop="size">Join
+						Today</vega-button>
+				</vega-box>
+
+			</vega-flex>
+			<vega-flex direction="row" justify-content="end" order="1"
+				data-responsive-json="{&quot;S&quot;:&quot;center&quot;, &quot;M&quot;: &quot;center&quot;, &quot;L&quot;:&quot;end&quot;}"
+				data-responsive-prop="justifyContent">
+				<vega-box>
+					<img src="./assets//hero-light.png" alt="">
+				</vega-box>
+			</vega-flex>
+		</vega-grid>
+	</vega-box>
+
+	<vega-box class="v-mb-size-32">
+	<vega-grid column="2" row="1" gap="size-40" data-responsive-json="{&quot;S&quot;:1, &quot;M&quot;: 1, &quot;L&quot;:2}" data-responsive-prop="column">
+		
+		
+		<vega-card variant="shadow" background-color="bg-primary"
+			class="feature-section v-pt-size-48 v-pr-size-48 v-pb-size-48 v-pl-size-64">
+			<vega-flex direction="col">
+				<vega-box class="v-mb-size-16">
+					<vega-font variant="font-h2" color="text-primary">What is a CAB?</vega-font>
+				</vega-box>
+				<vega-box class="v-mb-size-24">
+					<vega-font color="text-secondary" variant="font-p1-short">The CAB is a select group of customers who provide feedback and advice directly to our product team.
+		Your ideas will help us:</vega-font>
+				</vega-box>
+				
+				
+				
+				<vega-flex direction="col" class="v-mb-size-24">
+					<vega-flex direction="row" align-items="center" class="v-mb-size-12">
+						<vega-box class="v-mr-size-12">
+							<img src="./assets//check.svg" alt="">
+						</vega-box>
+						<vega-font color="text-primary" variant="font-h5">
+							Develop Innovative Solutions
+						</vega-font>
+					</vega-flex>
+					<vega-font color="text-secondary" variant="font-field-label">
+						Your insights will guide the development of new features and functionalities.
+					</vega-font>
+				</vega-flex>
+				
+				<vega-flex direction="col" class="v-mb-size-24">
+					<vega-flex direction="row" align-items="center" class="v-mb-size-12">
+						<vega-box class="v-mr-size-12">
+							<img src="./assets//check.svg" alt="">
+						</vega-box>
+						<vega-font color="text-primary" variant="font-h5">
+							Improve User Experience
+						</vega-font>
+					</vega-flex>
+					<vega-font color="text-secondary" variant="font-field-label">
+						Share your experiences and help us create an even better product for everyone.
+					</vega-font>
+				</vega-flex>
+				
+				<vega-flex direction="col" class="v-mb-size-24">
+					<vega-flex direction="row" align-items="center" class="v-mb-size-12">
+						<vega-box class="v-mr-size-12">
+							<img src="./assets//check.svg" alt="">
+						</vega-box>
+						<vega-font color="text-primary" variant="font-h5">
+							Stay Ahead of the Curve
+						</vega-font>
+					</vega-flex>
+					<vega-font color="text-secondary" variant="font-field-label">
+						Be among the first to learn about upcoming product releases and get exclusive behind-the-scenes
+		access.
+					</vega-font>
+				</vega-flex>
+				
+			</vega-flex>
+		</vega-card>
+		
+		<vega-card variant="shadow" background-color="bg-primary"
+			class="feature-section v-pt-size-48 v-pr-size-48 v-pb-size-48 v-pl-size-64">
+			<vega-flex direction="col">
+				<vega-box class="v-mb-size-16">
+					<vega-font variant="font-h2" color="text-primary">Benefits of Joining</vega-font>
+				</vega-box>
+				<vega-box class="v-mb-size-24">
+					<vega-font color="text-secondary" variant="font-p1-short">Make a real impact by shaping Heartland&#39;s future with your voice, insights, and networking.</vega-font>
+				</vega-box>
+				
+				
+				
+				<vega-flex direction="col" class="v-mb-size-24">
+					<vega-flex direction="row" align-items="center" class="v-mb-size-12">
+						<vega-box class="v-mr-size-12">
+							<img src="./assets//check.svg" alt="">
+						</vega-box>
+						<vega-font color="text-primary" variant="font-h5">
+							Make a Real Impact
+						</vega-font>
+					</vega-flex>
+					<vega-font color="text-secondary" variant="font-field-label">
+						Your voice will be heard by the decision-makers.
+					</vega-font>
+				</vega-flex>
+				
+				<vega-flex direction="col" class="v-mb-size-24">
+					<vega-flex direction="row" align-items="center" class="v-mb-size-12">
+						<vega-box class="v-mr-size-12">
+							<img src="./assets//check.svg" alt="">
+						</vega-box>
+						<vega-font color="text-primary" variant="font-h5">
+							Gain Exclusive Insights
+						</vega-font>
+					</vega-flex>
+					<vega-font color="text-secondary" variant="font-field-label">
+						Be in the know about upcoming developments.
+					</vega-font>
+				</vega-flex>
+				
+				<vega-flex direction="col" class="v-mb-size-24">
+					<vega-flex direction="row" align-items="center" class="v-mb-size-12">
+						<vega-box class="v-mr-size-12">
+							<img src="./assets//check.svg" alt="">
+						</vega-box>
+						<vega-font color="text-primary" variant="font-h5">
+							Network with Peers
+						</vega-font>
+					</vega-flex>
+					<vega-font color="text-secondary" variant="font-field-label">
+						Connect with other influential customers.
+					</vega-font>
+				</vega-flex>
+				
+				<vega-flex direction="col" class="v-mb-size-24">
+					<vega-flex direction="row" align-items="center" class="v-mb-size-12">
+						<vega-box class="v-mr-size-12">
+							<img src="./assets//check.svg" alt="">
+						</vega-box>
+						<vega-font color="text-primary" variant="font-h5">
+							Contribute to the Future
+						</vega-font>
+					</vega-flex>
+					<vega-font color="text-secondary" variant="font-field-label">
+						Help shape the direction of Heartland products.
+					</vega-font>
+				</vega-flex>
+				
+			</vega-flex>
+		</vega-card>
+		
+	</vega-grid>
+	</vega-box>
+
+	<vega-card background-color="bg-table-selected-row" class="footer-callout v-py-size-48 v-px-size-72  v-mb-size-32">
+		<vega-flex direction="col" align-items="center">
+			<vega-box class="v-mb-size-20">
+				<vega-font variant="font-h2" color="text-primary">
+					<div class="text-center">Share Your Voice & Influence the Direction of Heartland Products</div>
+				</vega-font>
+			</vega-box>
+			<vega-box class="v-mb-size-24">
+				<vega-font color="text-primary" variant="font-p2-short">Help Shape the Future!</vega-font>
+			</vega-box>	
+			
+			<vega-box>
+				<vega-button data-target="join-form-modal" variant="primary" icon="fa-solid fa-chevron-right"
+					icon-align="right" size="default">Join
+					Today</vega-button>
+			</vega-box>
+		</vega-flex>
+	</vega-card>
+
+	<vega-box class="v-py-size-40">
+		<vega-app-footer term-of-use-label="Terms of use" privacy-policy-label="Privacy Policy" />
+	</vega-box>
+
+
+</div>
+
+<vega-modal size="748" backdrop="static" open="false" id="join-form-modal">
+	<div slot="modal-title">
+		<div>Join Our Customer Advisory Board</div>
+	</div>
+	<div slot="modal-content">
+		<vega-form data-vega-form="form">
+			<vega-box class="v-mb-size-24">
+				<vega-grid column="2" row="1" gap="size-16"
+					data-responsive-json="{&quot;S&quot;:1, &quot;M&quot;: 1, &quot;L&quot;:2}"
+					data-responsive-prop="column">
+					<vega-input data-vega-form="name" label="Name" autocomplete="off" required="true"
+						auto-validation="true" placeholder="Full Name">
+					</vega-input>
+					<vega-input data-vega-form="business_name" label="Business Name / DBA" autocomplete="off"
+						required="true" auto-validation="true" placeholder="Business Name">
+					</vega-input>
+				</vega-grid>
+			</vega-box>
+
+			<vega-box class="v-mb-size-24">
+				<vega-grid column="2" row="1" gap="size-16"
+					data-responsive-json="{&quot;S&quot;:1, &quot;M&quot;: 1, &quot;L&quot;:2}"
+					data-responsive-prop="column">
+					<vega-input type="email" data-vega-form="email_address" label="Email Address" autocomplete="off"
+						required="true" auto-validation="true" placeholder="Email Address">
+					</vega-input>
+					<vega-input data-vega-form="phone_number" label="Phone Number" autocomplete="off"
+						auto-validation="true" placeholder="Format: (999) 999-9999">
+					</vega-input>
+				</vega-grid>
+			</vega-box>
+
+			<vega-box class="v-mb-size-24">
+				<vega-grid column="1" row="1" gap="size-16">
+					<vega-input data-vega-form="business_website" label="Business Website" autocomplete="off"
+						auto-validation="true"
+						placeholder="Please provide your business website link here (ex: www.PizzaPanda.com)">
+					</vega-input>
+				</vega-grid>
+			</vega-box>
+
+			<vega-box class="v-mb-size-24">
+				<vega-grid column="1" row="1" gap="size-16">
+					<vega-checkbox-group data-vega-form="heartland_product"
+						label="Which Heartland products are you using?">
+						<vega-checkbox identifier="Payments Processing"> Payments Processing </vega-checkbox>
+						<vega-checkbox identifier="Point of Sale"> Point of Sale </vega-checkbox>
+						<vega-checkbox identifier="Payroll & HR"> Payroll & HR </vega-checkbox>
+					</vega-checkbox-group>
+				</vega-grid>
+			</vega-box>
+
+			<vega-box class="v-mb-size-24">
+				<vega-grid column="1" row="1" gap="size-16">
+					<vega-input-select data-vega-form="industry" label="What industry best describes your business?"
+						autocomplete="off" auto-validation="true"
+						placeholder="What industry best describes your business?">
+					</vega-input-select>
+				</vega-grid>
+			</vega-box>
+
+			<vega-box v-if="industry === 'Other Services'" class="v-mb-size-24">
+				<vega-grid column="1" row="1" gap="size-16">
+					<vega-input data-vega-form="other_services" label="Please specify the industry" autocomplete="off"
+						auto-validation="true" placeholder="Please specify the industry">
+					</vega-input>
+				</vega-grid>
+			</vega-box>
+
+
+			<vega-grid column="1" row="1" gap="size-16">
+				<vega-textarea data-vega-form="additional_comments" label="Additional Comments" autocomplete="off"
+					auto-validation="true"
+					placeholder="If there is anything else you would like to share with us, please provide those details here. For example,  if you have multiple businesses, please list the names and websites of those businesses.">
+				</vega-textarea>
+			</vega-grid>
+		</vega-form>
+	</div>
+	<div slot="modal-footer">
+		<vega-flex v-show="!submitting" direction="row" gap="size-12" justify-content="end"
+			data-responsive-json="{&quot;S&quot;:&quot;col&quot;, &quot;M&quot;: &quot;col&quot;, &quot;L&quot;:&quot;row&quot;}"
+			data-responsive-prop="direction">
+			<vega-button variant="secondary" size="default" block="true" data-dismiss="modal">Cancel</vega-button>
+			<vega-button size="default" block="true" submit-signup>Submit</vega-button>
+		</vega-flex>
+		<vega-flex v-show="submitting" direction="row" gap="size-12" justify-content="end"
+			data-responsive-json="{&quot;S&quot;:&quot;col&quot;, &quot;M&quot;: &quot;col&quot;, &quot;L&quot;:&quot;row&quot;}"
+			data-responsive-prop="direction">
+			<vega-loading-indicator mode="indeterminate" size="small"></vega-loading-indicator>
+		</vega-flex>
+	</div>
+</vega-modal>
+
+<vega-modal size="496" backdrop="static" open="false" id="join-form-success-modal">
+	<div slot="modal-title">
+		<vega-box class="v-mb-size-32">
+			<div class="text-center">Thank you!</div>
+		</vega-box>
+		
+	</div>
+	<div slot="modal-content">
+		<vega-flex direction="col" align-items="center" gap="size-24">
+			<vega-box>
+				<img src="./assets//tick.svg" alt="">
+			</vega-box>
+			<vega-font color="text-secondary" variant="font-field-label">
+				<div class="text-center">Your information has been submitted. You'll hear back from us soon.</div>
+			</vega-font>
+		</vega-flex>
+	</div>
+	<div slot="modal-footer">
+		<vega-flex direction="row" gap="size-12" justify-content="center">
+			<vega-button size="large" data-dismiss="modal">Okay</vega-button>
+		</vega-flex>
+	</div>
+</vega-modal>
+
+<script>
+	const signupForm = new Vue({
+		el: '#join-form-modal',
+		data: {
+			modal: null,
+			formData: {},
+			form: null,
+			submitBtn: null,
+			submitting: false,
+			submitted: false,
+			industry: null,
+		},
+		delimiters: ['@[[', ']]'],
+		methods: {
+			initOnSubmitForm: function () {
+				var self = this;
+				self.submitBtn = document.querySelector('[submit-signup]');
+				self.form = document.querySelector('vega-form');
+				self.submitBtn.addEventListener('vegaClick', async function () {
+					self.form.valid();
+					const isValid = self.form.isValid;
+					if (isValid) {
+						self.formData = await self.form.getValue();
+						self.submitData();
+						return;
+					}
+					await window.VegaNotify.open({
+						type: 'error',
+						message: `Invalid data provided!`,
+					});
+				});
+			},
+			submitData: function () {
+				var self = this;
+				self.submitting = true;
+				$.post("/customer-advisory-board/submit", this.formData, async function (response) {
+					if (response.success) {
+						self.submitted = true;
+						self.onSubmitSuccess();
+					} else {
+						self.submitting = false;
+						await window.VegaNotify.open({
+							type: 'error',
+							message: `${response.msg}`,
+						});
+					}
+				}, 'json');
+			},
+			onSubmitSuccess: function () {
+				var self = this;
+				self.modal.modal('hide');
+			},
+			initModal: function () {
+				var self = this;
+				self.modal = document.getElementById('join-form-modal');
+				const successModal = document.getElementById('join-form-success-modal');
+				self.modal.addEventListener('vegaClose', function () {
+					self.form.reset();
+					self.submitting = false;
+					if (self.submitted) {
+						successModal.modal("show");
+					}
+					self.submitted = false;
+				});
+			},
+			initFormFields: function () {
+				var self = this;
+
+				//Industry
+				const industryInput = document.querySelector("vega-input-select[data-vega-form='industry']");
+				const industries = [
+					"Agriculture",
+					"Automotive",
+					"Banking",
+					"Biotechnology",
+					"Construction",
+					"Education",
+					"Energy",
+					"Entertainment",
+					"Finance",
+					"Healthcare",
+					"Hospitality",
+					"Information Technology",
+					"Manufacturing",
+					"Media",
+					"Retail",
+					"Telecommunications",
+					"Transportation",
+					"Utilities",
+					"Other Services"
+				];
+				var industriesSource = [];
+				for (var i = 0; i < industries.length; i++) {
+					var industry = industries[i];
+					industriesSource.push({ id: industry, displayName: industry });
+				}
+				industryInput.source = industriesSource;
+				industryInput.addEventListener('vegaChange', function (evt) {
+					self.industry = evt.detail;
+				});
+			},
+			initValidation: function () {
+				//Phone
+				const phoneInput = document.querySelector("vega-input[data-vega-form='phone_number']");
+				phoneInput.maskConfig = {
+					type: 'phone'
+				};
+			},
+			init: function () {
+				this.initModal();
+				this.initOnSubmitForm();
+				this.initFormFields();
+				this.initValidation();
+			}
+		},
+		mounted: function () {
+			this.init();
+		}
+	});
+</script>
+
+
+		</div>
+	</vega-box>
+</body>
+
+<script type="module">
+	(function ($) {
+		var cabComponent = {
+			initResponsiveness: function () {
+				var responsiveSections = $('[data-responsive-json]');
+				$.each(responsiveSections, function (i, section) {
+					var json = $(section).data('responsive-json');
+					json = JSON.parse(JSON.stringify(json));
+					var prop = $(section).data('responsive-prop');
+					section[prop] = json;
+				});
+			},
+			showPageContent: function () {
+				var preloader = $('#page-preloader');
+				var content = $('#page-content');
+				content.css({ display: 'block' });
+				preloader.remove();
+			},
+			onPageLoad: function () {			
+				this.showPageContent();
+				this.initResponsiveness();
+			},
+			initLoad: function () {
+                    var self = this;
+                    var checkReadyState = setInterval(function () {
+                        if ($('html').hasClass('hydrated')) {
+                            clearInterval(checkReadyState);
+                            self.onPageLoad();
+                        }
+                    }, 100);
+
+                    setTimeout(function () {
+                        clearInterval(checkReadyState);
+                        console.log("Timed out: 'hydrated' class not found within 3 minutes.");
+						location.reload();
+                    }, 120000);
+                },
+			init: function () {
+				var self = this;
+				self.initLoad();
+			}
+		};
+		cabComponent.init();
+	})(jQuery);
+</script>
+
+</html>
