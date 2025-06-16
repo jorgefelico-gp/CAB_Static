@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "build": "mkdir dist && cp index.html dist/index.html && cp -r assets dist/assets && cp package.json dist/package.json"
+    "build": "mkdir dist && cp index.html dist/index.html && cp -r assets dist/assets && cp package.json dist/package.json && cp style.css dist/style.css"
   },
   "keywords": [],
   "author": "",
