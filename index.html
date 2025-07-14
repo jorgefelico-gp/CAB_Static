@@ -1,396 +1,242 @@
+<!DOCTYPE html>
 <html lang="en">
 
-<head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="icon" href="img/schema/cab-favicon.png" type="image/ico" sizes="16x16">
-	<title>Join Our Customer Advisory Board</title>
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<div class="container">
+    <header>
+<!-- CSS files -->
+        <link rel="stylesheet" href="style.css">
+    </header>
 
-	<script type="module" src="https://unpkg.com/@heartlandone/vega@2.0.0/dist/vega/vega.esm.js"></script>
+    <body>
+        <header>
+            <img src="images/global-logo-color.png" alt="Global Payments Logo" width="200" height="auto">
+        </header>
 
-	<!-- CUSTOM -->
-	<link rel="stylesheet" href="https://unpkg.com/@heartlandone/vega@2.0.0/dist/vega/vega.css">
-	<!-- <script
-    type="module"
-    src="/vendor/@heartlandone-v2/vega/dist/vega/vega.esm.js"
-  ></script> -->
-	<!-- CUSTOM -->
+<!-- Main Section -->
+<div class="main-content">
 
+<!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-text">
+                <small>Help shape the future!</small>
+                    <h1>Join Our Customer Advisory Board</h1>
+                        <p>Are you a user of Global Payments products? Do you have valuable insights to share about your experience? Step into a key role-join our Customer Advisory Board and influence the direction of our products with your ideas.</p>
+                            <a href="https://www.userinterviews.com/opt-in/n5ErHmzSSgZcgPHkzLUgNmdS" class="button">Join Today →</a>
+            </div>
 
-	<link rel="stylesheet" href="./style.css">
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.10/vue.min.js"></script>
-</head>
+            <div class="hero-visual">
+                <div>
+                    <img src="images/hero img.png" alt="image illustrating a community of research process" width="460" height="auto">
+                </div>
+            </div>
+        </section>
 
-<body>
-	<vega-box background-color="bg-page">
-		<div id="page-preloader">
-			<img src="/assets/preloader.svg" alt="Loading...">
-		</div>
-		<div id="page-content" style="display: none;">
+            <!-- Benefits Section -->
+            <section class="benefits">
+                <div>
+                    <h2>Benefits of joining</h2>
+                        <p>Make a real impact by shaping our future with your voice, insights, and networking.</p>
+                </div>
 
+                <div class="card-wrapper">
+                    <!-- Benefit 1 -->
+                        <div class="card-item">
+                            <div class="icon">
+                                <img src="images/microphone.png" alt="image of a microphone">
+                            </div>
+                                <div class="card-content">
+                                    <h3>Make a real impact</h3>
+                                        <p>Your voice will be heard by the decision-makers.</p>
+                                </div>
+                        </div>
 
-			<vega-box background-color="bg-primary" class="header v-py-size-24 v-px-size-64 v-mb-size-32">
-				<vega-flex direction="row" justify-content="space-between" align-items="center">
-					<vega-box>
-						<img class="logo" src="/assets/logo.svg" alt="">
-					</vega-box>
-					<vega-box>
-						<vega-dropdown id="lightingOptions" trigger="hover">
-							<vega-icon icon="fa-regular fa-sun fa-fw" size="size-16" color="text-primary"></vega-icon>
-						</vega-dropdown>
-						<script type="module">
-							(function () {
-								var lightingComponent = {
-									status: 'light',
-									source: [
-										{ label: 'Light', key: 'light', prefixIcon: 'fa-regular fa-lightbulb fa-fw' },
-										{ label: 'Dark', key: 'dark', prefixIcon: 'fa-regular fa-moon fa-fw' }
-									],
+                    <!-- Benefit 2 -->
+                        <div class="card-item">
+                            <div class="icon">
+                                <img src="images/insights.png" alt="image of eyes depicting insights to early features">
+                            </div>
+                                <div class="card-content">
+                                    <h3>Gain exclusive insights</h3>
+                                        <p>Be in the know about upcoming developments.</p>
+                                </div>
+                        </div>
 
-									storeLocallyPermanently: function (param, data) {
-										if (typeof (Storage) !== "undefined") {
-											localStorage[param] = JSON.stringify(data);
-										} else {
-											console.log('Issue with web storage!');
-										}
-									},
-									getCachedData: function (key) {
-										var self = this;
-										var data = localStorage.getItem(key);
-										if (!data) return {};
-										data = JSON.parse(data);
-										return data;
-									},
-									setDefaultLighting: function () {
-										const settings = this.getCachedData('LIGHTING_SETTINGS');
-										this.status = settings.status || this.status;
-										this.setLighting();
-									},
-									setLighting: function () {
-										var self = this;
-										const status = this.status === 'dark' ? true : false;
-										if (typeof window.VegaThemeManager !== 'undefined') {
-											window.VegaThemeManager.toggleDarkMode(status);
-											const isDarkMode = window.VegaThemeManager.isDarkMode();
-											self.upldateLogo(isDarkMode);
-										}
-									},
-									upldateLogo: function (isDarkMode) {
-										const logo = document.querySelector('img.logo');
-										const darkLogoSrc = "/assets/logo-white.svg";
-										const lightLogoSrc = "/assets/logo.svg";
-										if (isDarkMode) {
-											$(logo).attr('src', darkLogoSrc);
-										} else {
-											$(logo).attr('src', lightLogoSrc);
-										}
-									},
-									initDropdown: function () {
-										var self = this;
-										const lightingOptions = document.getElementById('lightingOptions');
-										lightingOptions.source = this.source;
-										lightingOptions.addEventListener("vegaDropdownClick", (evt) => {
-											self.status = evt.detail;
-											self.storeLocallyPermanently('LIGHTING_SETTINGS', { status: self.status });
-											self.setLighting();
-										});
-									},
-									init: function () {
-										this.setDefaultLighting();
-										this.initDropdown();
-									}
-								};
-								lightingComponent.init();
-							})();
-						</script>
-					</vega-box>
-				</vega-flex>
-			</vega-box>
-			<div class="container">
-				<vega-box class="v-mb-size-32">
-					<vega-grid column="2" row="1" gap="size-48" class="hero"
-						data-responsive-json="{&quot;S&quot;:1, &quot;M&quot;: 1, &quot;L&quot;:2}"
-						data-responsive-prop="column">
-						<vega-flex direction="col" order="2" justify-content="center">
-							<vega-box class="v-mb-size-8">
-								<vega-flex direction="col">
-									<div class="badge-holder">
-										<vega-box background-color="bg-accent1-primary">
-											<div class="custom-chip">
-												<vega-font color="text-primary" variant="font-field-label-sm-em"><span
-														class="fw-700">Help Shape the Future!</span></vega-font>
-											</div>
-										</vega-box>
-									</div>
-								</vega-flex>
-							</vega-box>
-							<vega-box class="v-mb-size-32">
-								<vega-font variant="font-h1" color="text-primary" class="hero-title">Join Our Customer
-									Advisory
-									Board</vega-font>
-							</vega-box>
+                    <!-- Benefit 3 -->
+                        <div class="card-item">
+                            <div class="icon">
+                                <img src="images/network.png" alt="image depicting networking">
+                            </div>
+                                <div class="card-content">
+                                    <h3>Network with peers</h3>
+                                        <p>Connect with other influential customers.</p>
+                                </div>
+                        </div>
 
-							<vega-box class="v-mb-size-32">
-								<vega-box class="v-mb-size-8">
-									<vega-font color="text-primary" variant="font-h5">Are you a user of Global Payments
-										products? Do you
-										have
-										valuable insights to share about your experience?</vega-font>
-								</vega-box>
-								<vega-font color="text-primary" variant="font-p2-short">We're seeking engaged customers
-									to join our
-									exclusive <br class="md-block" /> "Customer Advisory
-									Board" (CAB).</vega-font>
-							</vega-box>
-							<vega-box>
-								<vega-button 
-									variant="primary"
-									icon="fa-solid fa-chevron-right"
-									icon-align="right"
-									size="large"
-									data-responsive-json="{&quot;S&quot;:&quot;default&quot;, &quot;M&quot;: &quot;default&quot;, &quot;L&quot;:&quot;large&quot;}"
-									data-responsive-prop="size"
-									onclick="window.open('https://www.userinterviews.com/opt-in/n5ErHmzSSgZcgPHkzLUgNmdS', '_blank')">
-									Join Today
-								</vega-button>
-							</vega-box>
+                    <!-- Benefit 4 -->
+                        <div class="card-item">
+                            <div class="icon">
+                                <img src="images/grow.png" alt="image of hand holding plant">
+                            </div>
+                                <div class="card-content">
+                                    <h3>Contribute to the future</h3>
+                                        <p>Help shape the direction of Global Payments products.
+                                    </p>
+                                </div>
+                        </div>
+                </div>
+            </section>
 
-						</vega-flex>
-						<vega-flex direction="row" justify-content="end" order="1"
-							data-responsive-json="{&quot;S&quot;:&quot;center&quot;, &quot;M&quot;: &quot;center&quot;, &quot;L&quot;:&quot;end&quot;}"
-							data-responsive-prop="justifyContent">
-							<vega-box>
-								<img src="/assets/hero-light.png" alt="">
-							</vega-box>
-						</vega-flex>
-					</vega-grid>
-				</vega-box>
+        <!-- What's Next Section -->
+            <section class="whats-next">
+                <h2>What's next?</h2>
+                    <p>Make a real impact by shaping our future with your voice, insights, and networking.</p>
+                    <div class="step-wrapper">
+                        <!-- Step 1 -->
+                            <div class="step-item">
+                                 <div class="step-content">
+                                    <!-- Image for large screens -->
+                                    <img class="step-desktop" src="images/step 1.jpg" alt="image of number 1">
+                                        <!-- Image for small screens -->
+                                        <img class="step-for-small-screen" src="images/1-smallScreen.jpg" alt="image of number 1">
+                                            <p><em>Tell us</em> a little about yourself company by filling out 
+                                                <a href="https://www.userinterviews.com/opt-in/n5ErHmzSSgZcgPHkzLUgNmdS">this form</a>.</p>
+                                    </div>
+                            </div>
+    
+                        <!-- Step 2 -->
+                            <div class="step-item">
+                                <div class="step-content">
+                                    <!-- Image for large screens -->
+                                     <img class="step-desktop" src="images/step 2.jpg" alt="image of number 2">
+                                        <!-- Image for small screens -->
+                                        <img class="step-for-small-screen" src="images/2-smallScreen.jpg" alt="image of number 2">
+                                            <p><em>Get notified</em> about product updates, upcoming product discussions, and research studies that fit your interests.</p>
+                                    </div>
+                            </div>
+    
+                        <!-- Step 3 -->
+                            <div class="step-item">
+                                <div class="step-content">
+                                     <!-- Image for large screens -->
+                                     <img class="step-desktop" src="images/step 3.jpg" alt="image of number 3">
+                                        <!-- Image for small screens -->
+                                        <img class="step-for-small-screen" src="images/3-smallScreen.jpg" alt="image of number 3">
+                                            <p><em>Engage</em> with us by participating in studies to share your feedback and accept our thanks.</p>
+                                    </div>
+                            </div>
+                    </div>
+            </section>
 
-				<vega-box class="v-mb-size-32">
-					<vega-grid column="2" row="1" gap="size-40"
-						data-responsive-json="{&quot;S&quot;:1, &quot;M&quot;: 1, &quot;L&quot;:2}"
-						data-responsive-prop="column">
+             <!-- CTA Section -->
+            <section class="join-today">
+                <div>
+                    <h2>Share your voice and influence the direction of Global Payment Products</h2>
+                        <p>Help shape the future!</p>
+                            <a href="https://www.userinterviews.com/opt-in/n5ErHmzSSgZcgPHkzLUgNmdS" class="secondary-button">Join Today →</a>
+                </div>
+            </section>
 
+            <!-- FAQ Section -->
+            <section class="FAQ">
+                <div>
+                    <h2>FAQ</h2>
+                        <div class="accordion">
+                            <div class="accordion-item">
+                                <button class="accordion-header">
+                                    How often will I be contacted?
+                                        <span class="icon">
+                                        <img src="images/chevron-down.png" alt="Toggle">
+                                        </span>
+                                </button>
+                                    <div class="accordion-body">
+                                        <p>Answer</p>
+                                    </div>
+                            </div>
+                        
+                            <div class="accordion-item">
+                                <button class="accordion-header">
+                                    If I get contacted to participate in a research study, what will I be doing?
+                                        <span class="icon">
+                                        <img src="images/chevron-down.png" alt="Toggle">
+                                        </span>
+                                </button>
+                                    <div class="accordion-body">
+                                        <p>Answer</p>
+                                    </div>
+                            </div>
+                        
+                            <div class="accordion-item">
+                                <button class="accordion-header">
+                                    What do I get for participating?
+                                        <span class="icon">
+                                        <img src="images/chevron-down.png" alt="Toggle">
+                                        </span>
+                                  </button>
+                                    <div class="accordion-body">
+                                        <p>Answer</p>
+                                    </div>
+                            </div>
+                        
+                            <div class="accordion-item">
+                                <button class="accordion-header">
+                                    How is my privacy and personal data be protected during this process?
+                                        <span class="icon">
+                                        <img src="images/chevron-down.png" alt="Toggle">
+                                        </span>
+                                </button>
+                                    <div class="accordion-body">
+                                        <p>Answer</p>
+                                    </div>
+                            </div>
+                        
+                            <div class="accordion-item">
+                                <button class="accordion-header">
+                                    I signed up, but no longer wish to participate. How do I opt-out?
+                                        <span class="icon">
+                                        <img src="images/chevron-down.png" alt="Toggle">
+                                        </span>
+                                </button>
+                                    <div class="accordion-body">
+                                        <p>Answer</p>
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+            </section>
 
-						<vega-card variant="shadow" background-color="bg-primary"
-							class="feature-section v-pt-size-48 v-pr-size-48 v-pb-size-48 v-pl-size-64">
-							<vega-flex direction="col">
-								<vega-box class="v-mb-size-16">
-									<vega-font variant="font-h2" color="text-primary">What is a CAB?</vega-font>
-								</vega-box>
-								<vega-box class="v-mb-size-24">
-									<vega-font color="text-secondary" variant="font-p1-short">The CAB is a select group
-										of customers who provide feedback and advice directly to our product team.
-										Your ideas will help us:</vega-font>
-								</vega-box>
+         </div>
+        </body>
 
+<!-- JS behavior for accordions -->
+        <script>
+            const headers = document.querySelectorAll('.accordion-header');
+          
+            headers.forEach(header => {
+              header.addEventListener('click', () => {
+                const openItem = document.querySelector('.accordion-header.active');
+                const body = header.nextElementSibling;
+          
+                if (openItem && openItem !== header) {
+                  openItem.classList.remove('active');
+                  openItem.nextElementSibling.style.maxHeight = null;
+                }
+          
+                header.classList.toggle('active');
+          
+                if (header.classList.contains('active')) {
+                  body.style.maxHeight = body.scrollHeight + "px";
+                } else {
+                  body.style.maxHeight = null;
+                }
+              });
+            });
+          </script>          
 
-
-								<vega-flex direction="col" class="v-mb-size-24">
-									<vega-flex direction="row" align-items="center" class="v-mb-size-12">
-										<vega-box class="v-mr-size-12">
-											<img src="/assets/check.svg" alt="">
-										</vega-box>
-										<vega-font color="text-primary" variant="font-h5">
-											Develop Innovative Solutions
-										</vega-font>
-									</vega-flex>
-									<vega-font color="text-secondary" variant="font-field-label">
-										Your insights will guide the development of new features and functionalities.
-									</vega-font>
-								</vega-flex>
-
-								<vega-flex direction="col" class="v-mb-size-24">
-									<vega-flex direction="row" align-items="center" class="v-mb-size-12">
-										<vega-box class="v-mr-size-12">
-											<img src="/assets/check.svg" alt="">
-										</vega-box>
-										<vega-font color="text-primary" variant="font-h5">
-											Improve User Experience
-										</vega-font>
-									</vega-flex>
-									<vega-font color="text-secondary" variant="font-field-label">
-										Share your experiences and help us create an even better product for everyone.
-									</vega-font>
-								</vega-flex>
-
-								<vega-flex direction="col" class="v-mb-size-24">
-									<vega-flex direction="row" align-items="center" class="v-mb-size-12">
-										<vega-box class="v-mr-size-12">
-											<img src="/assets/check.svg" alt="">
-										</vega-box>
-										<vega-font color="text-primary" variant="font-h5">
-											Stay Ahead of the Curve
-										</vega-font>
-									</vega-flex>
-									<vega-font color="text-secondary" variant="font-field-label">
-										Be among the first to learn about upcoming product releases and get exclusive
-										behind-the-scenes
-										access.
-									</vega-font>
-								</vega-flex>
-
-							</vega-flex>
-						</vega-card>
-
-						<vega-card variant="shadow" background-color="bg-primary"
-							class="feature-section v-pt-size-48 v-pr-size-48 v-pb-size-48 v-pl-size-64">
-							<vega-flex direction="col">
-								<vega-box class="v-mb-size-16">
-									<vega-font variant="font-h2" color="text-primary">Benefits of Joining</vega-font>
-								</vega-box>
-								<vega-box class="v-mb-size-24">
-									<vega-font color="text-secondary" variant="font-p1-short">Make a real impact by
-										shaping Global Payments&#39; future with your voice, insights, and
-										networking.</vega-font>
-								</vega-box>
-
-
-
-								<vega-flex direction="col" class="v-mb-size-24">
-									<vega-flex direction="row" align-items="center" class="v-mb-size-12">
-										<vega-box class="v-mr-size-12">
-											<img src="/assets/check.svg" alt="">
-										</vega-box>
-										<vega-font color="text-primary" variant="font-h5">
-											Make a Real Impact
-										</vega-font>
-									</vega-flex>
-									<vega-font color="text-secondary" variant="font-field-label">
-										Your voice will be heard by the decision-makers.
-									</vega-font>
-								</vega-flex>
-
-								<vega-flex direction="col" class="v-mb-size-24">
-									<vega-flex direction="row" align-items="center" class="v-mb-size-12">
-										<vega-box class="v-mr-size-12">
-											<img src="/assets/check.svg" alt="">
-										</vega-box>
-										<vega-font color="text-primary" variant="font-h5">
-											Gain Exclusive Insights
-										</vega-font>
-									</vega-flex>
-									<vega-font color="text-secondary" variant="font-field-label">
-										Be in the know about upcoming developments.
-									</vega-font>
-								</vega-flex>
-
-								<vega-flex direction="col" class="v-mb-size-24">
-									<vega-flex direction="row" align-items="center" class="v-mb-size-12">
-										<vega-box class="v-mr-size-12">
-											<img src="/assets/check.svg" alt="">
-										</vega-box>
-										<vega-font color="text-primary" variant="font-h5">
-											Network with Peers
-										</vega-font>
-									</vega-flex>
-									<vega-font color="text-secondary" variant="font-field-label">
-										Connect with other influential customers.
-									</vega-font>
-								</vega-flex>
-
-								<vega-flex direction="col" class="v-mb-size-24">
-									<vega-flex direction="row" align-items="center" class="v-mb-size-12">
-										<vega-box class="v-mr-size-12">
-											<img src="/assets/check.svg" alt="">
-										</vega-box>
-										<vega-font color="text-primary" variant="font-h5">
-											Contribute to the Future
-										</vega-font>
-									</vega-flex>
-									<vega-font color="text-secondary" variant="font-field-label">
-										Help shape the direction of Global Payments products.
-									</vega-font>
-								</vega-flex>
-
-							</vega-flex>
-						</vega-card>
-
-					</vega-grid>
-				</vega-box>
-
-				<vega-card background-color="bg-table-selected-row"
-					class="footer-callout v-py-size-48 v-px-size-72  v-mb-size-32">
-					<vega-flex direction="col" align-items="center">
-						<vega-box class="v-mb-size-20">
-							<vega-font variant="font-h2" color="text-primary">
-								<div class="text-center">Share Your Voice & Influence the Direction of Global Payments
-									Products</div>
-							</vega-font>
-						</vega-box>
-						<vega-box class="v-mb-size-24">
-							<vega-font color="text-primary" variant="font-p2-short">Help Shape the Future!</vega-font>
-						</vega-box>
-
-						<vega-box>
-							<vega-button 
-								variant="primary"
-								icon="fa-solid fa-chevron-right"
-								icon-align="right"
-								size="default"
-								onclick="window.open('https://www.userinterviews.com/opt-in/n5ErHmzSSgZcgPHkzLUgNmdS', '_blank')">
-								Join Today
-							</vega-button>
-						</vega-box>
-					</vega-flex>
-				</vega-card>
-
-				<vega-box class="v-py-size-40">
-					<vega-app-footer content="©2025 Global Payments Inc. All rights reserved." term-of-use-label="Terms of use" privacy-policy-label="Privacy Policy" privacy-policy-url="https://www.globalpayments.com/privacy-statement" term-of-use-url="https://www.globalpayments.com/terms-of-use"></vega-app-footer>
-				</vega-box>
-			</div>
-
-		</div>
-	</vega-box>
-</body>
-
-<script type="module">
-	(function ($) {
-		var cabComponent = {
-			initResponsiveness: function () {
-				var responsiveSections = $('[data-responsive-json]');
-				$.each(responsiveSections, function (i, section) {
-					var json = $(section).data('responsive-json');
-					json = JSON.parse(JSON.stringify(json));
-					var prop = $(section).data('responsive-prop');
-					section[prop] = json;
-				});
-			},
-			showPageContent: function () {
-				var preloader = $('#page-preloader');
-				var content = $('#page-content');
-				content.css({ display: 'block' });
-				preloader.remove();
-			},
-			onPageLoad: function () {
-				this.showPageContent();
-				this.initResponsiveness();
-			},
-			initLoad: function () {
-				var self = this;
-				var checkReadyState = setInterval(function () {
-					if ($('html').hasClass('hydrated')) {
-						clearInterval(checkReadyState);
-						self.onPageLoad();
-					}
-				}, 100);
-
-				// setTimeout(function () {
-				//     clearInterval(checkReadyState);
-				//     console.log("Timed out: 'hydrated' class not found within 3 minutes.");
-				// 	location.reload();
-				// }, 120000);
-			},
-			init: function () {
-				var self = this;
-				self.initLoad();
-			}
-		};
-		cabComponent.init();
-	})(jQuery);
-</script>
+    </div>
+        <footer>
+            <img src="images/global-logo-color.png" alt="Global Payments Logo" width="200" height="auto">
+            <p>© 2025 Global Payments. All rights reserved.</p>
+        </footer>
+    </body>
 
 </html>
