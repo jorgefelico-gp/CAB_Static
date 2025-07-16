@@ -6,6 +6,7 @@ html, body {
     margin: 0;
     padding: 0;
     height: 100%;
+    overflow-x: hidden;
 }
 
 header img {
@@ -23,6 +24,7 @@ body {
     align-items: flex-start;
     align-self: stretch;
     max-width: 1440px;
+    margin: 0 auto;
   } 
 
 
@@ -380,5 +382,4 @@ footer p {
     }
 
 }
-
 
