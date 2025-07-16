@@ -23,7 +23,6 @@ body {
     padding: 0px 12vw 64px 12vw;
     align-items: flex-start;
     align-self: stretch;
-    max-width: 1440px;
     margin: 0 auto;
   } 
 
@@ -72,7 +71,7 @@ section {
 
 .hero-text {
     flex: 1;
-    max-width: 700px;
+    max-width: 100%;
     color: #0C0C0C;
 }
 
@@ -91,7 +90,7 @@ section {
     flex-wrap: wrap;
     justify-content: center; 
     position: relative;
-    max-width: 100%;
+    max-width: 460px;
     height: auto;
     animation: hero-visual 4s;
 }
