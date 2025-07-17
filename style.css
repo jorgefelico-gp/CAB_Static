@@ -286,7 +286,7 @@ a:hover {
     background: none;
     border: none;
     font-size: 20px;
-    font-weight: 500;
+    font-weight: 600;
     text-align: left;
     display: flex;
     justify-content: space-between;
@@ -316,16 +316,53 @@ a:hover {
     margin: 16px 0;
   }
   
-
 footer {
     background-color: #F7F7F8;
-    padding: 48px;
-    text-align: center;
+    padding: 48px 4vw;
 }
 
 footer p {
     color: #5A5E6D;
 }
+
+.footer-container {
+    max-width: 1020px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    flex-direction:row;
+  }
+  
+  .footer-left {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .footer-right {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  
+  .footer-right a {
+    text-decoration: underline;
+    color: #5A5E6D;
+    transition: color 0.2s ease;
+  }
+  
+  .footer-right a:hover,
+  .footer-right a:focus {
+    color: #444;
+  }
+  
+  .divider {
+    color: #666;
+  }
 
 @media (min-width: 1020px) { /* Fixed width at 1020px and above */
     .container {
