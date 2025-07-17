@@ -220,7 +220,7 @@ a:hover {
     display: flex;
     align-items: flex-start;
     flex-direction: column;
-    padding-top: 16px;
+    padding-top: 8px;
 }
 
 .step-wrapper {
