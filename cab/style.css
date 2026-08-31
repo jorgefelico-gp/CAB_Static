@@ -370,7 +370,7 @@ footer p {
     }
   }
 
-@media (min-width: 1078px) { /* Fixed width at 1078px and above */
+@media (min-width: 1046px) { /* Fixed width at 1046px and above */
     .join-today {
     padding: 48px 100px;
 	}
