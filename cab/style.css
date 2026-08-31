@@ -259,7 +259,7 @@ a:hover {
 .join-today {
     background: #DDF2FF;
     display: flex;
-    padding: 48px 72px;
+    padding: 48px 80px;
     flex-direction: column;
     justify-content: center;
     gap: 4px;
@@ -368,6 +368,12 @@ footer p {
       max-width: 1020px;
       padding: 0 48px; 
     }
+  }
+
+@media (min-width: 1078px) { /* Fixed width at 1078px and above */
+    .join-today {
+    padding: 48px 100px;
+	}
   }
 
 @media (max-width: 1105px) { /*  Large tablets and down */ 
